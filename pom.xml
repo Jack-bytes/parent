@@ -7,7 +7,7 @@
     <groupId>org.jackwang.parent</groupId>
     <artifactId>parent</artifactId>
     <!-- 带有 -SNAPSHOT 后缀如果deploy就会发布到快照仓库,没有则是releases仓库 -->
-    <version>1.1-parent</version>
+    <version>1.0-parent</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -40,10 +40,25 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
-        <!-- 测试 -->
+        <!-- ++++++++++++++++++++++++ 测试 ++++++++++++++++++++++++ -->
+        <!-- 包含全新编程模型和扩展机制 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.6.3</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- 启动测试框架 -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>1.6.3</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- 兼容 JUnit3.x 和 JUnit4.x -->
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
             <version>5.6.3</version>
             <scope>test</scope>
         </dependency>
@@ -156,7 +171,7 @@
                 <!--                </configuration>-->
             </plugin>
 
-            <!-- 暂时用不了javadoc,有些许问题,先不用 -->
+            <!-- 暂时用不了javadoc,如果doc写得不规范,将打包不了,所以先不用 -->
 <!--            <plugin>-->
 <!--                <groupId>org.apache.maven.plugins</groupId>-->
 <!--                <artifactId>maven-javadoc-plugin</artifactId>-->
