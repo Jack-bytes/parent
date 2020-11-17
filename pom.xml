@@ -7,7 +7,7 @@
     <groupId>org.jackwang.parent</groupId>
     <artifactId>parent</artifactId>
     <!-- 带有 -SNAPSHOT 后缀如果deploy就会发布到快照仓库,没有则是releases仓库 -->
-    <version>1.0-parent</version>
+    <version>1.1-parent</version>
     <packaging>pom</packaging>
 
     <properties>
