@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.jackwang.parent</groupId>
+    <groupId>com.github.jack-bytes</groupId>
     <artifactId>parent</artifactId>
     <!-- 带有 -SNAPSHOT 后缀如果deploy就会发布到快照仓库,没有则是releases仓库 -->
-    <version>1.1-parent</version>
+    <version>1.2-parent</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -41,7 +41,7 @@
             <version>1.2.3</version>
         </dependency>
         <!-- ++++++++++++++++++++++++ 测试 ++++++++++++++++++++++++ -->
-        <!-- 包含全新编程模型和扩展机制 -->
+        <!-- 包含全新编程模型和扩展机制,如果仅仅是单元测试,这个就够了 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -114,16 +114,16 @@
     <distributionManagement>
         <repository>
             <!-- 如果仓库有密码的,则此id需要与settings.xml中的server标签的id相同 -->
-            <id>ali-releases</id>
-            <name>ali-releases-repo</name>
-            <url>https://packages.aliyun.com/maven/repository/2015283-release-fEPja7</url>
+            <id>GitHub</id>
+            <name>GitHub-repo</name>
+            <url>https://maven.pkg.github.com/jack-bytes/maven-repository</url>
             <uniqueVersion>true</uniqueVersion>
             <layout>default</layout>
         </repository>
         <snapshotRepository>
-            <id>ali-snapshots</id>
-            <name>ali-snapshot-repo</name>
-            <url>https://packages.aliyun.com/maven/repository/2015283-snapshot-Op8kPn</url>
+            <id>GitHub</id>
+            <name>GitHub-repo</name>
+            <url>https://maven.pkg.github.com/jack-bytes/maven-repository</url>
             <uniqueVersion>true</uniqueVersion>
             <layout>default</layout>
         </snapshotRepository>
