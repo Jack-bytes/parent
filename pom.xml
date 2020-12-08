@@ -9,6 +9,11 @@
     <version>1.3-parent</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <developer.name>Jack Wang</developer.name>
+    </properties>
+
     <developers>
         <developer>
             <name>Jack Wang</name>
@@ -104,5 +109,120 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <distributionManagement>
+        <repository>
+            <!-- 如果仓库有密码的,则此id需要与settings.xml中的server标签的id相同 -->
+            <id>GitHub</id>
+            <name>GitHub-repo</name>
+            <url>https://maven.pkg.github.com/jack-bytes/maven-repository</url>
+            <uniqueVersion>true</uniqueVersion>
+            <layout>default</layout>
+        </repository>
+        <!-- 带有 -SNAPSHOT 后缀如果deploy就会发布到快照仓库,没有则是releases仓库 -->
+        <snapshotRepository>
+            <id>GitHub</id>
+            <name>GitHub-repo</name>
+            <url>https://maven.pkg.github.com/jack-bytes/maven-repository</url>
+            <uniqueVersion>true</uniqueVersion>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <developer>${developer.name}</developer>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!-- 可自定义生成的source.jar的信息, attach的意思好像是是否在项目目录下的意思,官网原话:
+                The attach parameter specifies whether the java sources will be attached to the artifact list of the project. -->
+                <!-- 以下注释掉的配置是默认就是这样的,不用配置,仅作记录 -->
+                <!--                <configuration>-->
+                <!--                    <outputDirectory>${project.basedir}/target</outputDirectory>-->
+                <!--                    <finalName>${artifactId}-${version}</finalName>-->
+                <!--                    <attach>true</attach>-->
+                <!--                </configuration>-->
+            </plugin>
+
+            <!-- 暂时用不了javadoc,如果doc写得不规范,将打包不了,所以先不用 -->
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-javadoc-plugin</artifactId>-->
+            <!--                <version>3.2.0</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>javadoc-jar</id>-->
+            <!--                        <phase>package</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>jar</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+                <executions>
+                    <execution>
+                        <id>default-install</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>install</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sources>target/${project.artifactId}-${project.version}-sources.jar</sources>
+                    <generatePom>true</generatePom>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!-- deploy的时候使用的jar文件默认就是在这个位置,不用配置,因为在生成的时候就是默认这个位置的 -->
+                <!--                <configuration>-->
+                <!--                    <sources>target/${project.artifactId}-${project.version}-sources.jar</sources>-->
+                <!--                    <javadoc>target/${project.artifactId}-${project.version}-javadoc.jar</javadoc>-->
+                <!--                </configuration>-->
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
