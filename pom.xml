@@ -49,20 +49,20 @@
         </dependency>
 
         <!-- 启动测试框架 -->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.platform</groupId>-->
-<!--            <artifactId>junit-platform-runner</artifactId>-->
-<!--            <version>1.6.3</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.junit.platform</groupId>-->
+        <!--            <artifactId>junit-platform-runner</artifactId>-->
+        <!--            <version>1.6.3</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <!-- 兼容 JUnit3.x 和 JUnit4.x -->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.vintage</groupId>-->
-<!--            <artifactId>junit-vintage-engine</artifactId>-->
-<!--            <version>5.6.3</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.junit.vintage</groupId>-->
+        <!--            <artifactId>junit-vintage-engine</artifactId>-->
+        <!--            <version>5.6.3</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
     </dependencies>
 
     <dependencyManagement>
