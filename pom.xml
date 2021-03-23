@@ -12,6 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <developer.name>Jack Wang</developer.name>
+        <spring-boot-dependencies.version>2.3.9.RELEASE</spring-boot-dependencies.version>
     </properties>
 
     <developers>
@@ -22,29 +23,27 @@
 
     <dependencies>
 
-        <!-- +++++++++++++++++++++++++++ 分割线: 日志,测试,lombok等 +++++++++++++++++++++++++++++++++++ -->
+        <!-- +++++++++++++++++++++++++++ 分割线: lombok +++++++++++++++++++++++++++++++++++ -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
         </dependency>
-        <!-- 日志 -->
+
+        <!-- +++++++++++++++++++++++++++ 分割线: 日志 +++++++++++++++++++++++++++++++++++ -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.30</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
         </dependency>
-        <!-- ++++++++++++++++++++++++ 测试 ++++++++++++++++++++++++ -->
+
+        <!-- +++++++++++++++++++++++++++ 分割线: 测试 +++++++++++++++++++++++++++++++++++ -->
         <!-- 包含全新编程模型和扩展机制,如果仅仅是单元测试,这个就够了 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.6.3</version>
             <scope>test</scope>
         </dependency>
 
@@ -67,6 +66,18 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- +++++++++++++++++++++++++++ 分割线: SpringBoot相关的版本管理 +++++++++++++++++++++++++++++++++++ -->
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 以下依赖的版本调到properties暂缓 -->
             <!-- +++++++++++++++++++++++++++ 分割线: 依赖管理 +++++++++++++++++++++++++++++++++++ -->
 
             <dependency>
