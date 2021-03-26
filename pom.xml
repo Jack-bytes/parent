@@ -8,11 +8,17 @@
     <artifactId>parent</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
+    <description>此pom项目主要目的: 1.子项目公共依赖; 2.子项目依赖版本管理; 3.打包(包含源码), 安装和发布</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <developer.name>Jack Wang</developer.name>
+        <!-- 借用SpringBoot的版本管理 -->
         <spring-boot-dependencies.version>2.3.9.RELEASE</spring-boot-dependencies.version>
+        <!-- 插件版本 -->
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     </properties>
 
     <developers>
@@ -123,30 +129,12 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <repository>
-            <!-- 如果仓库有密码的,则此id需要与settings.xml中的server标签的id相同 -->
-            <id>GitHub</id>
-            <name>GitHub-repo</name>
-            <url>https://maven.pkg.github.com/jack-bytes/maven-repository</url>
-            <layout>default</layout>
-        </repository>
-        <!-- 带有 -SNAPSHOT 后缀如果deploy就会发布到快照仓库,没有则是releases仓库 -->
-        <snapshotRepository>
-            <id>GitHub</id>
-            <name>GitHub-repo</name>
-            <url>https://maven.pkg.github.com/jack-bytes/maven-repository</url>
-            <!-- 此配置只针对快照版本配置, 功能: 是否对快照版本生成构建号和时间戳组成的唯一版本; -->
-            <uniqueVersion>true</uniqueVersion>
-            <layout>default</layout>
-        </snapshotRepository>
-    </distributionManagement>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>${maven-jar-plugin.version}</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -162,7 +150,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -201,7 +189,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
+                <version>${maven-install-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>default-install</id>
@@ -219,7 +207,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
+                <version>${maven-deploy-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>default-deploy</id>
